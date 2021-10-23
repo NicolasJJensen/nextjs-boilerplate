@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background-color: var(--theme-base);
+  color: var(--theme-text);
+  transition: all 0.3s;
+}
+
+/* body[data-theme="meme"] .otherTheme {
+  display: block;
+} */
