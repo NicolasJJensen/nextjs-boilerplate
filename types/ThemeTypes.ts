@@ -3,9 +3,10 @@ export type SingleThemeType = {
 }
 
 export type ThemeType = {
-    [key: string]: {
-        dark: SingleThemeType,
-        light: SingleThemeType,
-        default?: SingleThemeType
-    }
+    dark: SingleThemeType,
+    light: SingleThemeType
+}
+
+export type ThemesType = {
+    [key: string]: ThemeType
 }

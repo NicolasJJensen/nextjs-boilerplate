@@ -1,9 +1,19 @@
+import ThemeEditor from '@/components/ThemesModal'
+import ThemeDisplay from '@/components/ThemesModal/ThemeDisplay'
 import useThemes from '@/hooks/useThemes'
+import { defaultTheme } from '@/lib/themes'
+import { SingleThemeType } from '@/types/ThemeTypes'
 import type { NextPage } from 'next'
 import Head from 'next/head'
+import Link from 'next/link'
+import { Fragment } from 'react'
 
 const Home: NextPage = () => {
-  const { setTheme, setMode } = useThemes()
+  const { defaultThemes, themes, customThemes, currentTheme, addTheme, setTheme, editTheme, removeTheme, setMode } = useThemes()
+
+  function updateThemePart(themeName: string, themePart: SingleThemeType) {
+    editTheme(themeName, { light: themePart, dark: themePart })
+  }
 
   return (
     <>
@@ -14,12 +24,33 @@ const Home: NextPage = () => {
       </Head>
 
       <main>
-        <button onClick={() => setTheme('blue')}>Set Blue Mode</button>
-        <button onClick={() => setTheme('green')}>Set Green Mode</button>
+        <h1>Home Page</h1>
+        <p>{currentTheme}</p>
+        <br />
+        <Link href='/test' >Go To TestPage</Link>
+        <br />
+        <br />
+        {Object.keys(defaultThemes).map(key => (
+          <Fragment key={key}>
+            <button key={key} onClick={() => setTheme(key)}>Set {key} Mode</button>
+            <br />
+          </Fragment>
+        ))}
+        <br />
+        <br />
+        {Object.keys(customThemes).map(themeName => (
+          <Fragment key={themeName}>
+            <p>{themeName}</p>
+          </Fragment>
+        ))}
+        <ThemeDisplay {...defaultThemes[defaultTheme]}/>
         <br />
         <br />
         <button onClick={() => setMode('dark')}>Set Dark Mode</button>
         <button onClick={() => setMode('light')}>Set Light Mode</button>
+        <br />
+        <br />
+        {/* <button onClick={updateTheme}>Add Custom Theme</button> */}
       </main>
     </>
   )

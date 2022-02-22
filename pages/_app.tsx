@@ -8,11 +8,12 @@ import '@/styles/globalStyles.css'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import ThemeStyles from '@/components/ThemeStyles'
+import themes from '@/lib/themes'
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <AnimateSharedLayout>
-      <ThemeStyles>
+      <ThemeStyles themes={themes} customThemesKey=''>
         <Head>
         </Head>
 
@@ -32,4 +33,5 @@ function MyApp({ Component, pageProps }: AppProps) {
     </AnimateSharedLayout>
   )
 }
+
 export default MyApp

@@ -1,4 +1,4 @@
-import { SingleThemeType, ThemeType } from '@/types/ThemeTypes'
+import { SingleThemeType, ThemesType } from '@/types/ThemeTypes'
 import { camelCaseToKebabCase } from '@/helpers/string'
 
 function isThemeType(themeVal: SingleThemeType | string): themeVal is SingleThemeType {
@@ -35,12 +35,11 @@ function themeCssVarsToString(theme: SingleThemeType) {
 
 // Converts all themes to css vars
 // Uses the key for "theme" data value on the body that it will apply to
-export function allThemesToCssVars(inputThemes: ThemeType) {
+export function allThemesToCssVars(inputThemes: ThemesType) {
   return Object.keys(inputThemes).reduce((acc, theme) => {
     const singleTheme = inputThemes[theme]
     acc += `body[data-theme="${theme}"][data-mode="light"] ${themeCssVarsToString(singleTheme['light'])}`
     acc += `body[data-theme="${theme}"][data-mode="dark"] ${themeCssVarsToString(singleTheme['dark'])}`
-    if(singleTheme['default']) acc += `body[data-theme="${theme}"] ${themeCssVarsToString(singleTheme['default'])}`
 
     return acc
   }, '')

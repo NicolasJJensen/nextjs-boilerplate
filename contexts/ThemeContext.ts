@@ -1,9 +1,29 @@
 import { createContext } from "react"
-import themes from '@/lib/themes'
+import { defaultTheme } from '@/lib/themes'
+import { ThemesType, ThemeType } from "@/types/ThemeTypes"
 
 const ThemeContext = createContext<{
-    setTheme: (string: keyof typeof themes) => void,
-    setMode: (string: 'light' | 'dark') => void
-}>({setTheme: () => {}, setMode: () => {}})
+    themes: ThemesType,
+    defaultThemes: ThemesType,
+    customThemes: ThemesType,
+    currentTheme: string | undefined,
+    mode: 'light' | 'dark' | undefined,
+    setTheme: (theme: string) => void,
+    setMode: (mode: 'light' | 'dark') => void,
+    addTheme: (themeName: string, theme: ThemeType) => void,
+    editTheme: (themeName: string, theme: ThemeType, newThemeName?: string) => void,
+    removeTheme: (themeName: string) => void
+}>({
+    themes: {},
+    defaultThemes: {},
+    customThemes: {},
+    currentTheme: defaultTheme,
+    mode: 'light',
+    setTheme: () => {},
+    setMode: () => {},
+    addTheme: () => {},
+    editTheme: () => {},
+    removeTheme: () => {}
+})
 
 export default ThemeContext
